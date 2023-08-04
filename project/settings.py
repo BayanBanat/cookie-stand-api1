@@ -29,6 +29,7 @@ env = environ.Env(
     DATABASE_PASSWORD=(str, ""),
     DATABASE_HOST=(str, ""),
     DATABASE_PORT=(int, 5432),
+    SECRET_KEY=(str,"")
 )
 
 environ.Env.read_env()
@@ -61,7 +62,7 @@ INSTALLED_APPS = [
     "corsheaders",
     # local
     "accounts",
-    "things",
+    "Snacks",
 ]
 
 MIDDLEWARE = [
@@ -101,14 +102,21 @@ WSGI_APPLICATION = 'project.wsgi.application'
 # Database
 # https://docs.djangoproject.com/en/4.0/ref/settings/#databases
 
+# DATABASES = {
+#     "default": {
+#         "ENGINE": env.str("DATABASE_ENGINE"),
+#         "NAME": env.str("DATABASE_NAME"),
+#         "USER": env.str("DATABASE_USER"),
+#         "PASSWORD": env.str("DATABASE_PASSWORD"),
+#         "HOST": env.str("DATABASE_HOST"),
+#         "PORT": env.int("DATABASE_PORT"),
+#     }
+# }
+
 DATABASES = {
-    "default": {
-        "ENGINE": env.str("DATABASE_ENGINE"),
-        "NAME": env.str("DATABASE_NAME"),
-        "USER": env.str("DATABASE_USER"),
-        "PASSWORD": env.str("DATABASE_PASSWORD"),
-        "HOST": env.str("DATABASE_HOST"),
-        "PORT": env.int("DATABASE_PORT"),
+    'default': {
+        'ENGINE': 'django.db.backends.sqlite3',
+        'NAME': BASE_DIR / 'db.sqlite3',
     }
 }
 

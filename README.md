@@ -1,37 +1,82 @@
-# api-quick-start
 
-Template Project for starting up CRUD API with Django Rest Framework
 
-## Customization Steps
+# Lab: Class 33
+# # api-quick-start
+**Author: Bayan**
 
-- DO NOT migrate yet
-- add additional dependencies as needed
-  - Re-export requirements.txt as needed
-- change `things` folder to the app name of your choice
-- Search through entire code base for `Thing`,`Things` and `things` to modify code to use your resource
-  - `project/settings.py`
-  - `project/urls.py`
-  - App's files
-    - `views.py`
-    - `urls.py`
-    - `admin.py`
-    - `serializers.py`
-    - `permissions.py`
-  - "Front" files
-    - if including a customer facing portion of the site then update/recreate:
-      - `urls_front.py`
-      - `views_front.py`
-      - template files
-      - Make sure to update project `urls.py` to add routes to the "front".
-- Update ThingModel with fields you need
-  - Make sure to update other modules that would be affected by Model customizations. E.g. serializers, tests, etc.
-- Rename `project/.env.sample` to `.env` and update as needed
-  - To generate secret key use `python3 -c "import secrets; print(secrets.token_urlsafe())"`
-- Run makemigrations and migrate commands when ready.
-- Run `python manage.py collectstatic`
-  - This repository includes static assets in repository. If you are using a Content Delivery Network then remove `staticfiles` from repository.
-- Optional: Update `api_tester.py`
+**Setup**
 
-## Database
+Create a virtual environment and activate it:
+```
+python -m venv .venv
+source .venv/bin/activate
 
-**NOTE:** If you are using Postgres instead of SQLite then make sure to install `psycopg2-binary` and include in `requirements.txt`
+```
+
+Launch the necessary services using Docker Compose:
+```
+docker-compose up
+```
+
+Environment Variables
+
+SECRET_KEY= ###
+
+DEBUG=True
+
+ALLOWED_HOSTS=localhost,127.0.0.1,0.0.0.0
+
+ALLOW_ALL_ORIGINS=True
+
+Database Configuration
+
+
+DATABASE_ENGINE: Specify the database engine for Django.
+
+DATABASE_ENGINE=django.db.backends.postgresql
+DATABASE_NAME: Set the name of PostgreSQL database.
+
+DATABASE_USER: Provide the username for connecting to the PostgreSQL database.
+
+
+DATABASE_PASSWORD: Use this variable to set the password for the database user.
+
+DATABASE_HOST: Specify the host address of PostgreSQL database.
+
+DATABASE_PORT: Set the port number for the database connection.
+
+
+**Testing with HTTP Clients**
+manually test the API endpoints, ThunderClient
+
+**List of Routes**
+
+**Get Tokens**
+HTTP Method: POST
+
+**Refresh Tokens**
+HTTP Method: POST
+
+
+**CRUD routes for resource**
+
+HTTP Method: GET, POST, PUT, DELETE
+Token Required: Yes
+
+**PORT** - 8001
+
+
+**How to initialize/run your application**
+gunicorn
+
+Install gunicorn if you haven't already:
+
+```
+pip install gunicorn
+```
+
+**in docker-compose.yml**
+
+```
+gunicorn project.wsgi:application --bind 0.0.0.0:8001 --workers 4
+```
