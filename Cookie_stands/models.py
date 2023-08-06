@@ -3,7 +3,7 @@ from django.db import models
 from django.urls import reverse
 
 
-class Snack(models.Model):
+class Cookie_stand(models.Model):
     location = models.CharField(max_length=256)
     owner = models.ForeignKey(
         get_user_model(), on_delete=models.CASCADE, null=True, blank=True
@@ -18,5 +18,5 @@ class Snack(models.Model):
         return self.location
 
     def get_absolute_url(self):
-        return reverse('Snack_detail', args=[str(self.id)])
+        return reverse('Cookie_stand_detail', args=[str(self.id)])
 
