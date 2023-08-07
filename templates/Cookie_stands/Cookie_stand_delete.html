@@ -3,8 +3,9 @@
 {% block content %}
   <h1>Delete Cookie_stand</h1>
   <form method="POST">
-  {% csrf_token %}
-    <p>Do you really want to delete "{{ Cookie_stand.location }}"?</p>
+    {% csrf_token %}
+    {{form.as_p}}
+    <p>Do you really want to delete {{ Cookie_stand.location }}?</p>
     <input type="submit" value="OK">
   </form>
 {% endblock content %}
